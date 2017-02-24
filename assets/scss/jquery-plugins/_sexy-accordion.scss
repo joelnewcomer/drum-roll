@@ -1,0 +1,52 @@
+ul.accordion {
+  margin: 0 auto 40px;
+  border-top: 1px solid $primary-color;
+  background: #fff;
+}
+ul.accordion > li {
+	list-style: none;
+  border-bottom: 1px solid $primary-color;
+  position: relative;
+  margin: 0;
+}
+ul.accordion li:before {
+	display: none;
+}
+ul.accordion li .accordion-content {
+  display: none;
+  padding: 10px 25px 30px;
+}
+ul.accordion > li > a {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1;
+  padding: 15px 30px 15px 15px;
+  user-select: none;
+}
+ul.accordion > li > a:after {
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #4a6e78;
+  border-bottom: 1px solid #4a6e78;
+  position: absolute;
+  right: 10px;
+  content: " ";
+  top: 19px;
+  transform: rotate(-45deg);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+ul.accordion .accordion-content {
+  line-height: 2;
+  padding: 10px;
+}
+
+ul.accordion > li > a.active:after {
+  transform: rotate(45deg);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}

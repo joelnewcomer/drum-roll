@@ -1,0 +1,53 @@
+.entry-content > ul {
+	display: block;
+	float: left;
+	overflow: hidden;
+	list-style-position: inside;
+	width: 100%;
+	margin: 10px 0 10px 15px;
+	> li {
+		margin-left: 1.5rem;
+		margin-bottom: 7px;
+		list-style: none;
+		position: relative;
+		padding-left: 18px;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 7px;
+		&:before {
+			font-family: 'FontAwesome';
+			content: '\f0da';
+			margin: 0 10px 0 0;
+			color: #ccc;
+			font-size: 1.5em;
+			position: absolute;
+			left: 0;
+			top: -8px;
+		}
+	}
+}
+
+.entry-content .ul-bullets {
+	display: block;
+
+	ul {
+		display: inline-block;
+		position: relative;
+		li {
+			display: block;
+			float: left;
+			clear: left;
+			list-style: none;
+			padding-left: 20px;
+			position: relative;
+			&:before {
+				position: absolute;
+				left: 0px;
+				top: 8px;
+				content: "\f111";
+				font: normal normal normal 8px/1 FontAwesome;
+				color: $black;
+			}
+		}
+	}
+}

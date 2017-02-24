@@ -1,0 +1,346 @@
+$white: #fff !default;
+$gray:  #848484 !default;
+$jet:   #222 !default;
+$input-bg:           $gray !default;
+$input-color:        #222 !default;
+$input-radius:		 0px !default;
+$input-label:        $gray !default;
+$input-error:        #ca3c3c !default;
+$input-shadow:       1px 1px 2px #eee inset !default;
+$input-transition:   all .3s ease-in-out !default;
+$input-height:       44px !default;
+$input-border:		 solid 2px $gray !default;
+$input-border-focus: #999 !default;
+
+//radio buttons checkboxs
+$radio-bg:			$white !default;
+$radio-width:		20px !default;
+$radio-height:		$radio-width !default;
+$radio-radius:		 10px !default;
+
+$form-button-background:       $gray !default;
+$form-button-background-hover: darken($form-button-background, 5%) !default;
+$form-button-color:            #fff !default;
+
+$form-required: #f00 !default;
+$form-muted:    #858585 !default;
+
+$form-font-size:   16px !default;
+$form-line-height: $form-font-size * 2.75 !default;
+$form-space:       $form-line-height / 2 !default;
+
+
+
+
+
+
+
+
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="file"],
+textarea,
+select {
+	@include form-spacing(padding, $form-space);
+	background: rgba($input-bg, .5);
+	color: $jet!important;
+	border: solid 1px $input-bg;
+	border-radius: $input-radius;
+	line-height: normal;
+	height: $form-line-height;
+	display: block;
+	width: 100%;
+	//box-shadow: $input-shadow;
+	transition: $input-transition;
+
+	&:focus {
+		border-color: $input-border-focus;
+		outline: none;
+	}
+}
+
+input[type="file"] {
+	&:hover { cursor: pointer; }
+}
+
+input[type="search"] {
+	width: auto;
+	display: inline-block;
+}
+
+select {
+	height: $form-line-height;
+	color: $jet!important;
+	background: rgba($input-bg, .5) url(../images/select-arrow.png) right top no-repeat;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    text-indent: 0.01px;
+    text-overflow: '';
+    padding: 8px 42px 8px 7px !important;
+    font-size: 16px !important;
+    line-height: normal;
+    border-radius: 0;
+    border: solid 2px $input-bg;
+
+}
+
+select[multiple],
+select[size] {
+	height: auto;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	width: auto;
+	display: inline-block;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+	@include form-spacing(padding, $form-space $form-space * 2);
+	@include form-font-size(14px);
+	background: $form-button-background;
+	color: $form-button-color;
+	display: inline-block;
+	font-weight: 400;
+	text-transform: uppercase;
+	border: 0;
+	transition: $input-transition;
+
+	&:hover {
+		background: $form-button-background-hover;
+	}
+}
+
+// WebKit-style focus
+// @link https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/mixins/_tab-focus.scss [props]
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+	&:focus {
+		outline: thin dotted;
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px;
+	}
+}
+
+::-webkit-input-placeholder {
+  //font-family: @font-primary;
+  color: $jet!important;
+  font-size: $form-font-size;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  //font-family: @font-primary;
+  color: $jet!important;
+  font-size: $form-font-size;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  //font-family: @font-primary;
+   color: $jet!important;
+  font-size: $form-font-size;
+}
+
+:-ms-input-placeholder {
+  //font-family: @font-primary;
+  color: $jet!important;
+  font-size: $form-font-size;
+}
+
+
+/* Base for checkboxs styling */
+
+[type="checkbox"] {
+  &:not(:checked), &:checked {
+    position: absolute;
+    left: -9999px;
+  }
+  &:not(:checked) + label, &:checked + label {
+    position: relative;
+    padding-left: 35px !important;
+    cursor: pointer;
+  }
+  &:not(:checked) + label:before, &:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: $radio-width;
+    height: $radio-height;
+    border: solid 2px $form-button-background;
+    background: $radio-bg;
+  }
+  &:not(:checked) + label:after, &:checked + label:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: $radio-width;
+    height: $radio-height;
+    background: $gray;
+    transition: all .2s;
+  }
+  &:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+  }
+  &:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  &:disabled {
+    &:not(:checked) + label:before {
+      box-shadow: none;
+      border-color: #bbb;
+      background-color: #ddd;
+    }
+    &:checked + label {
+      &:before {
+        box-shadow: none;
+        border-color: #bbb;
+        background-color: #ddd;
+      }
+      &:after {
+        color: #999;
+      }
+    }
+    + label {
+      color: #aaa;
+    }
+  }
+  &:checked:focus + label:before, &:not(:checked):focus + label:before {
+    border: 1px dotted blue;
+  }
+}
+
+/* Base for radio styling */
+
+[type="radio"] {
+  &:not(:checked), &:checked {
+    position: absolute;
+    left: -9999px;
+  }
+  &:not(:checked) + label, &:checked + label {
+    position: relative;
+    padding-left: 35px !important;
+    cursor: pointer;
+  }
+  &:not(:checked) + label:before, &:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: $radio-width;
+    height: $radio-height;
+    border: solid 2px $form-button-background;
+    background: $radio-bg;
+    -webkit-border-radius: $radio-radius;
+    -moz-border-radius: $radio-radius;
+    border-radius: $radio-radius;
+  }
+  &:not(:checked) + label:after, &:checked + label:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: $radio-width;
+    height: $radio-height;
+    background: $gray;
+    transition: all .2s;
+    -webkit-border-radius: $radio-radius;
+    -moz-border-radius: $radio-radius;
+    border-radius: $radio-radius;
+  }
+  &:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+  }
+  &:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  &:disabled {
+    &:not(:checked) + label:before {
+      box-shadow: none;
+      border-color: #bbb;
+      background-color: #ddd;
+    }
+    &:checked + label {
+      &:before {
+        box-shadow: none;
+        border-color: #bbb;
+        background-color: #ddd;
+      }
+      &:after {
+        color: #999;
+      }
+    }
+    + label {
+      color: #aaa;
+    }
+  }
+  &:checked:focus + label:before, &:not(:checked):focus + label:before {
+    border: 1px dotted blue;
+  }
+}
+
+// This code will put a check mark in a checkbox
+/*
+input[type="checkbox"]:checked + label::after {
+   content: '';
+   position: absolute;
+   width: 2.6ex;
+   height: 1ex;
+   background: rgba(0, 0, 0, 0);
+   top: -0.1ex;
+   left: 0.4ex;
+   border: 4px solid black;
+   border-top: none;
+   border-right: none;
+   -webkit-transform: rotate(-45deg);
+   -moz-transform: rotate(-45deg);
+   -o-transform: rotate(-45deg);
+   -ms-transform: rotate(-45deg);
+   transform: rotate(-45deg);
+}
+
+input[type="checkbox"] {
+   line-height: 3.1ex;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label::before {
+   content: "";
+   display: inline-block;
+   vertical-align: -25%;
+   height: 2ex;
+   width: 2ex;
+   background-color: white;
+   border: 1px solid rgb(166, 166, 166);
+   border-radius: 4px;
+   box-shadow: inset 0 2px 5px rgba(0,0,0,0.25);
+   margin-right: 0.5em;
+}
+*/
